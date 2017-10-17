@@ -9,6 +9,7 @@ public class Binaer {
 	static int neuerIndex;
 	static int teilWert;
 	static int zaehler;
+	static int erg;
 
 	public static double logarithmusBase2(double a) {
 		return Math.ceil(Math.log(a) / Math.log(2));
@@ -17,12 +18,13 @@ public class Binaer {
 	public static void suche(int gesZahl, int[] daten) {
 		if (einmal == 0) {
 			System.out.println("Die gesuchte Zahl ist: " + gesZahl);
-			neuerIndex = daten.length / 2;
+		    neuerIndex = daten.length / 2;
 			teilWert = neuerIndex;
 			zaehler = 0;
 		}
 		einmal = 1;
 		zaehler++;
+
 		if (daten[neuerIndex] > gesZahl) {
 			neuerIndex = neuerIndex - teilWert / 2;
 			teilWert = teilWert / 2;
@@ -37,11 +39,13 @@ public class Binaer {
 				teilWert = 2;
 			}
 		}
-		if (daten[neuerIndex] != gesZahl){
+		if (daten[neuerIndex] != gesZahl) {
 			suche(gesZahl, daten);
 		}
-		System.out.println("die gesuchte Zahl " + daten[neuerIndex] + " wurde im Array gefunden");
-		System.out.println("benötigte Schritte: " + zaehler);
+		
+			erg = daten[neuerIndex];
+		
+
 	}
 
 	public static void main(String[] args) {
@@ -51,6 +55,8 @@ public class Binaer {
 		}
 		System.out.println("Höchstanzahl der Suchdurchläufe: " + logarithmusBase2(datenStruktur.length + 1));
 		suche(8, datenStruktur);
+		System.out.println("die gesuchte Zahl " + erg + " wurde im Array gefunden");
+		System.out.println("benötigte Schritte: " + zaehler);
 	}
 
 }
